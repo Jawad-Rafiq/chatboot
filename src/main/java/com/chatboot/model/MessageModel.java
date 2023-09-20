@@ -2,12 +2,17 @@ package com.chatboot.model;
 
 import com.chatboot.controller.request.MESSAGETYPE;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.ToString;
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.security.Timestamp;
+import java.time.Instant;
 
 @Entity
+@Builder
 public class MessageModel {
     @Id
     @Column(name = "message_id")
@@ -21,5 +26,10 @@ public class MessageModel {
     @Column(name = "message_messageType")
     private MESSAGETYPE messagetype;
     @CreationTimestamp
-    private Timestamp sendedAt;
+    private Instant sendedAt;
+
+    @Override
+    public String toString() {
+        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+    }
 }
