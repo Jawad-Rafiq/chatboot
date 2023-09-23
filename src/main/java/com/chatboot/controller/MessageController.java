@@ -18,7 +18,13 @@ public class MessageController {
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
     public ChatMessage sendMessage(@Payload ChatMessage chatMessage){
-        log.info("recieved request to send message  : [{}]", chatMessage);
+        log.info("recieved request for public message  : [{}]", chatMessage);
         return service.sendMessage(chatMessage);
+    }
+
+    @MessageMapping("/private-message")
+    public ChatMessage prvateMessage(@Payload ChatMessage chatMessage){
+        log.info("recieved request for private message:  [{}]", chatMessage);
+        return chatMessage;
     }
 }

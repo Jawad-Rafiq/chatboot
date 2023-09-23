@@ -22,6 +22,7 @@ public class MessageServiceImpl implements MessageService{
                         .sender(chatMessage.getSender())
                         .content(chatMessage.getContent())
                 .build());
+        log.info("saved message in database message: {}, by: {}", chatMessage.getContent(), chatMessage.getSender());
         return chatMessage;
     }
 }

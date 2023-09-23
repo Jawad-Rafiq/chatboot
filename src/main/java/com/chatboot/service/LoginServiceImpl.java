@@ -20,6 +20,7 @@ public class LoginServiceImpl implements LoginService {
         //Add username in websocket
         simpMessageHeaderAccessor.getSessionAttributes().put("username", message.getSender());
         chatroomRepo.save(ChatroomModel.builder().username(message.getSender()).build());
+        log.info("save user in database username: {}",message.getSender());
         return message;
     }
 }
